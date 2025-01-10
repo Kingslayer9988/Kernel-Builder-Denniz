@@ -17,7 +17,7 @@
         ]
       }
     ],
-    "enableCcache": true, 
+    "enableCcache": false, 
           "params": { 
             "ARCH": "arm64", 
             "CC": "clang/bin/clang", 
