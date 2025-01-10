@@ -75,10 +75,10 @@ jobs:
       CCACHE_DIR: "${{ github.workspace }}/ccache"
     steps:
       # Set swap space
-      - name: 📐 Set swap to 8G
+      - name: 📐 Set swap to 5G
         uses: pierotofy/set-swap-space@master
         with:
-          swap-size-gb: 8
+          swap-size-gb: 5
 
       # This action checks-out your CONFIGSitory under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: 😄 Checkout
