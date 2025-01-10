@@ -9,6 +9,35 @@ on:
     - cron: "14 13 * * 5"
 
 jobs:
+  cleanup-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Check available disk space
+      - name: Check Disk Space (Before Cleanup)
+        run: df -h
+
+      # Step 3: Cleanup temporary and unnecessary files
+      - name: Cleanup Disk Space
+        run: |
+          echo "Clearing system temporary files..."
+          sudo rm -rf /tmp/* || true
+          echo "Clearing GitHub Runner diagnostic logs..."
+          sudo rm -rf /home/runner/runners/2.321.0/_diag/* || true
+          echo "Cleaning old Docker containers and images..."
+          docker system prune -af || true
+          echo "Removing unused files in /home/runner..."
+          find /home/runner -type f -size +100M -exec rm -f {} \; || true
+
+      # Step 4: Recheck disk space
+      - name: Check Disk Space (After Cleanup)
+        run: df -h
+
+      
   Read-configuration:
     name: 🐂 Parse *.config.json
     runs-on: ubuntu-latest
@@ -292,7 +321,11 @@ jobs:
             git am -s < ${{ env.WORKSPACE }}/LXC/Patches/xt_qtaguid.patch
             echo "🎖️ Apply xt_qtaguid.patch"
           fi
-
+          
+# Step 6: Final Disk Space Check
+      - name: Check Disk Space (After Job)
+        run: df -h
+        
       - name: 👍 Start building the kernel
         working-directory: ${{ env.KERNEL_NAME }}
         env:
