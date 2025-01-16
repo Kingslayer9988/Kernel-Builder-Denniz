@@ -241,12 +241,24 @@ jobs:
           #  rm -rf "./drivers/kernelsu"
           #fi
 
-          # Apply new KernelSU patches
-          #curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+           Apply new KernelSU patches
+          curl -LSs "https://raw.githubusercontent.com/rifsxd/KernelSU-Next/next/kernel/setup.sh" | bash -s next
 
-          #echo -e "CONFIG_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
-          #echo -e "CONFIG_HAVE_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
-          #echo -e "CONFIG_KPROBE_EVENTS=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+          echo -e "CONFIG_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+          echo -e "CONFIG_HAVE_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+          echo -e "CONFIG_KPROBE_EVENTS=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+          echo -e CONFIG_KSU=y
+          echo -e CONFIG_KSU_SUSFS=y
+          echo -e CONFIG_KSU_SUSFS_SUS_PATH=y
+          echo -e CONFIG_KSU_SUSFS_SUS_MOUNT=y
+          echo -e CONFIG_KSU_SUSFS_SUS_KSTAT=y
+          echo -e CONFIG_KSU_SUSFS_SUS_OVERLAYFS=y
+          echo -e CONFIG_KSU_SUSFS_TRY_UMOUNT=y
+          echo -e CONFIG_KSU_SUSFS_SPOOF_UNAME=y
+          echo -e CONFIG_KSU_SUSFS_ENABLE_LOG=y
+          echo -e CONFIG_KSU_SUSFS_OPEN_REDIRECT=y
+          echo -e CONFIG_KSU_SUSFS_HAS_MAGIC_MOUNT=y
+          echo -e CONFIG_KSU_SUSFS_SUS_SU=n
 
           cat arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
 
