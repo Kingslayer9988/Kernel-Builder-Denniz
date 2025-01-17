@@ -2,8 +2,8 @@
   {
     "kernelSource": {
       "name": "android_kernel_oplus_mt6893",
-      "repo": "https://github.com/Kingslayer9988/android_kernel_oplus_mt6893.git",
-      "branch": "kernelsu-next-susfs",
+      "repo": "https://github.com/Ten-X-Devices/kernel_oplus_mt6893.git",
+      "branch": "T",
       "device": "denniz",
       "defconfig": "denniz_defconfig"
     },
@@ -35,7 +35,7 @@
       }
     },
     "AnyKernel3": {
-      "use": false,
+      "use": true,
       "release": true
     },
     "enableKernelSU": true,
