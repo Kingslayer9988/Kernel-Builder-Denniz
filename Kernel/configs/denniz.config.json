@@ -2,8 +2,8 @@
   {
     "kernelSource": {
       "name": "android_kernel_oplus_mt6893",
-      "repo": "https://github.com/Kingslayer9988/android_kernel_oplus_mt6893.git",
-      "branch": "lineage-22.1-ksun-susfs",
+      "repo": "https://github.com/soulspark666/android_kernel_oplus_mt6893.git",
+      "branch": "kernelsu-next-susfs",
       "device": "denniz",
       "defconfig": "denniz_defconfig"
     },
